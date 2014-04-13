@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MultiTraining</string>
+    <string name="action_settings">Настройки</string>
+    <string name="Num1">1</string>
+	<string name="Num2">2</string>
+	<string name="Num3">3</string>
+	<string name="Num4">4</string>
+	<string name="Num5">5</string>
+	<string name="Num6">6</string>
+	<string name="Num7">7</string>
+	<string name="Num8">8</string>
+	<string name="Num9">9</string>
+	<string name="Num0">0</string>
+	<string name="NumC">C</string>
+	<string name="NumAnswer">Ответ</string>
+	<string name="butStart">Старт</string>
+	<string name="textExample">Пример:</string>
+	<string name="textAnswer">Ответ:</string>
+</resources>
