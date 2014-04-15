@@ -28,6 +28,16 @@
     		android:configChanges="orientation|screenSize">
 		</activity>
         
+        <activity android:name="com.example.multitraining.PlayActivity"
+    		android:label="@string/Play"
+    		android:configChanges="orientation|screenSize">
+		</activity>
+        
+        <activity android:name="com.example.multitraining.StatActivity"
+    		android:label="@string/Stat"
+    		android:configChanges="orientation|screenSize">
+		</activity>
+		
     </application>
 
 </manifest>

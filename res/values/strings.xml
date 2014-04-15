@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">MultiTraining</string>
     <string name="Training">Training</string>
+    <string name="Play">Play on time</string>
+    <string name="Stat">Statistics</string>
     <string name="action_settings">Настройки</string>
+    
+     
     <string name="Num1">1</string>
 	<string name="Num2">2</string>
 	<string name="Num3">3</string>
@@ -17,8 +20,12 @@
 	<string name="NumC">C</string>
 	<string name="NumAnswer">Ответ</string>
 	<string name="butStart">Старт</string>
-	<string name="butTren">Тренировка</string>
 	<string name="textExample">Пример:</string>
 	<string name="textAnswer">Ответ:</string>
+	
+		
 	<string name="textHello">Привет!</string>
+	<string name="butTren">Тренировка</string>
+	<string name="butPlay">Игра на время</string>
+	<string name="butStatistic">Статистика</string>
 </resources>
