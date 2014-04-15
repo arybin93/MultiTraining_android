@@ -19,6 +19,18 @@ public class MainActivity extends Activity {
 	    startActivity(intent);	
 	}
 	
+	public void onStartPlay(View v)
+	{
+		Intent intent = new Intent(this, PlayActivity.class);
+	    startActivity(intent);	
+	}
+	
+	public void onOpenStat(View v)
+	{
+		Intent intent = new Intent(this, StatActivity.class);
+	    startActivity(intent);	
+	}
+	
 //////
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

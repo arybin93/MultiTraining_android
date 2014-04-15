@@ -18,4 +18,19 @@
         android:layout_height="wrap_content"
         android:onClick="onStartTren"
         android:text="@string/butTren" />
+
+    <Button
+        android:id="@+id/butStartPlayOnTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onStartPlay"
+        android:text="@string/butPlay" />
+    
+     <Button
+        android:id="@+id/butStat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onOpenStat"
+        android:text="@string/butStatistic" />
+
 </LinearLayout>
