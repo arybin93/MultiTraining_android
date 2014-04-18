@@ -22,6 +22,7 @@
 	<string name="butStart">Старт</string>
 	<string name="textExample">Пример:</string>
 	<string name="textAnswer">Ответ:</string>
+	<string name="textTime">00:30</string>
 	
 		
 	<string name="textHello">Привет!</string>

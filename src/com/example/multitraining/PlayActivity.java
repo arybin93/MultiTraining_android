@@ -1,7 +1,221 @@
 package com.example.multitraining;
 
+import java.util.Random;
+
+
+
+
+
+
+
+
+
+import java.util.concurrent.TimeUnit;
+
 import android.app.Activity;
+import android.app.Fragment;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.SystemClock;
+import android.sax.TextElementListener;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class PlayActivity extends Activity {
+	
+	 private static final int MILLIS_PER_SECOND = 1000;
+	 private static final int SECONDS_TO_COUNTDOWN = 60;
+	 private TextView     countdownDisplay;
+	 private CountDownTimer timer;
+	
+	String answer; 
+	int result;
+	int countRight = 0;
+	int countError = 0;
 
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_play);	
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
+		OnGenerationExample();
+		
+		Button btn1 = (Button) findViewById(R.id.button1);
+		Button btn2 = (Button) findViewById(R.id.button2);
+		Button btn3 = (Button) findViewById(R.id.button3);
+		Button btn4 = (Button) findViewById(R.id.button4);
+		Button btn5 = (Button) findViewById(R.id.button5);
+		Button btn6 = (Button) findViewById(R.id.button6);
+		Button btn7 = (Button) findViewById(R.id.button7);
+		Button btn8 = (Button) findViewById(R.id.button8);
+		Button btn9 = (Button) findViewById(R.id.button9);
+		Button btn0 = (Button) findViewById(R.id.buttonZero);
+		Button btnC = (Button) findViewById(R.id.buttonClear);
+		Button btnAnswer = (Button) findViewById(R.id.buttonAnswer);
+		
+		btn1.setOnClickListener(clikBtn);
+		btn2.setOnClickListener(clikBtn);
+		btn3.setOnClickListener(clikBtn);
+		btn4.setOnClickListener(clikBtn);
+		btn5.setOnClickListener(clikBtn);
+		btn6.setOnClickListener(clikBtn);
+		btn7.setOnClickListener(clikBtn);
+		btn8.setOnClickListener(clikBtn);
+		btn9.setOnClickListener(clikBtn);
+		btn0.setOnClickListener(clikBtn);
+		btnC.setOnClickListener(clikBtn);
+		btnAnswer.setOnClickListener(clikBtn);
+
+		
+		countdownDisplay = (TextView) findViewById(R.id.textTime);
+	    showTimer(SECONDS_TO_COUNTDOWN * MILLIS_PER_SECOND);
+	}
+	
+	private void showTimer(int countdownMillis) {
+		  if(timer != null) { timer.cancel(); }
+		  timer = new CountDownTimer(countdownMillis, MILLIS_PER_SECOND) {
+		  @Override
+		  public void onTick(long millisUntilFinished) {
+		    countdownDisplay.setText("" +
+		    millisUntilFinished / MILLIS_PER_SECOND);
+		  }
+		  @Override
+		    public void onFinish() {
+		      countdownDisplay.setText("KABOOM!");
+		      // dialog: you game over, your result, once again?
+		    }
+		  }.start();
+		}
+
+	public void OnGenerationExample()
+	{
+		Random r =new Random();
+		int num1 = r.nextInt(9)+1;
+		int num2 = r.nextInt(9)+1;
+	    result = num1 * num2;
+	    
+	    TextView Example = (TextView) findViewById(R.id.textExample);
+	    Example.setText(num1 + " x " + num2);
+	   
+	//  TextView AnsMessage = (TextView) findViewById(R.id.textAnswerMessage);
+	 // AnsMessage.setText("");    
+	}
+	
+	//TextView Example = (TextView) findViewById(R.id.textExample);
+	//TextView AnsMessage = (TextView) findViewById(R.id.textAnswerMessage);
+	//EditText editTextAnswer = (EditText)findViewById(R.id.editTextAnswer);
+	
+	OnClickListener clikBtn = new OnClickListener() {
+	       @Override
+	       public void onClick(View v) {
+	    	   switch(v.getId()) {
+	   	    case R.id.button1:
+	   	    	addNumberEvent("1");
+	   	        break;
+	   	    case R.id.button2:
+	   	    	addNumberEvent("2");
+	   	        break;
+	   	    case R.id.button3:
+	   	    	addNumberEvent("3");
+	   	        break;
+	   	    case R.id.button4:
+	   	    	addNumberEvent("4");
+	   	        break;
+	   	    case R.id.button5:
+	   	    	addNumberEvent("5");
+	   	        break;
+	   	    case R.id.button6:
+	   	    	addNumberEvent("6");
+	   	        break;
+	   	    case R.id.button7:
+	   	    	addNumberEvent("7");
+	   	        break;
+	   	    case R.id.button8:
+	   	    	addNumberEvent("8");
+	   	        break;
+	   	    case R.id.button9:
+	   	    	addNumberEvent("9");
+	   	        break;
+	   	    case R.id.buttonZero:
+	   	    	addNumberEvent("0");
+	   	        break; 
+	   	    case R.id.buttonClear:
+	   	    	EditText editTextAnswer = (EditText)findViewById(R.id.editTextAnswer);
+	   	    	editTextAnswer.setText("");
+	   	        break;  
+	   	    case R.id.buttonAnswer:
+	   	    		editTextAnswer = (EditText)findViewById(R.id.editTextAnswer);	
+	   	    		answer = editTextAnswer.getText().toString();
+	   	    		String res = String.valueOf(result);
+	   	    		String resTest;
+	   	    		TextView AnsMessage = (TextView) findViewById(R.id.textAnswerMessage);
+	   	    		
+	   	    	 /* try {
+	   	    			TimeUnit.SECONDS.sleep(1); 
+	   	    		} catch (InterruptedException e) {
+	   	    			// TODO Auto-generated catch block
+	   	    			e.printStackTrace();
+	   	    		}
+	   	    	 */	
+	   	    		String currentTime;
+	   	    		int new_time;
+	   	    		
+	   	    		if(answer.equals(res))
+	   	    		{
+	   	    			++countRight;
+	   	    			resTest =   String.valueOf(countError); 
+	   				    Log.e("countRight", resTest);
+	   				    AnsMessage.setText("True!");
+	   				    
+	   				    countdownDisplay = (TextView) findViewById(R.id.textTime);
+	   				   currentTime =  countdownDisplay.getText().toString();
+	   				   new_time =Integer.parseInt(currentTime);
+	   				   new_time = new_time + 5;
+	   				   showTimer( (new_time) * MILLIS_PER_SECOND);
+	   	    		} else {
+	   	    			++countError;
+	   	    			resTest =   String.valueOf(countError); 
+	   				    Log.e("countError", resTest);
+	   				    AnsMessage.setText("False!");
+	   				    
+	   				   countdownDisplay = (TextView) findViewById(R.id.textTime);
+	   				   currentTime =  countdownDisplay.getText().toString();
+	   				   new_time =Integer.parseInt(currentTime);
+	   				   new_time = new_time - 5;
+	   				   if(new_time<0)
+	   				   {
+	   					   // game over dialog, again?
+	   				   }
+	   				   else
+	   				   {
+	   					   showTimer( (new_time) * MILLIS_PER_SECOND);
+	   				   }
+	   				   
+	   				   
+	   	    		}
+	   	    	    
+	   	    		OnGenerationExample();
+	   	    		editTextAnswer.setText("");
+	   	        break; 
+	    	  }        
+	       }
+	     };
+	
+	     public void addNumberEvent(String s) {
+	    	 EditText editTextAnswer = (EditText)findViewById(R.id.editTextAnswer);
+	    	 if(editTextAnswer.getText().toString()=="") {
+		    	 editTextAnswer.setText(s);
+		     } else {
+		    	 answer = editTextAnswer.getText().toString();
+		    	 editTextAnswer.setText(answer + s);
+		     }	 
+	     }
 }
