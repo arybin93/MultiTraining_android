@@ -30,23 +30,22 @@ import android.widget.TextView;
 public class PlayActivity extends Activity {
 	
 	 private static final int MILLIS_PER_SECOND = 1000;
-	 private static final int SECONDS_TO_COUNTDOWN = 60;
+	 private static final int SECONDS_TO_COUNTDOWN = 30;
 	 private TextView     countdownDisplay;
 	 private CountDownTimer timer;
 	
-	String answer; 
-	int result;
-	int countRight = 0;
-	int countError = 0;
-
-	
+	 String answer; 
+	 int result;
+	 int countRight = 0;
+	 int countError = 0;
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play);	
 		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
-		OnGenerationExample();
+		OnGenerationExample();  // generation example
 		
 		Button btn1 = (Button) findViewById(R.id.button1);
 		Button btn2 = (Button) findViewById(R.id.button2);
@@ -76,10 +75,10 @@ public class PlayActivity extends Activity {
 
 		
 		countdownDisplay = (TextView) findViewById(R.id.textTime);
-	    showTimer(SECONDS_TO_COUNTDOWN * MILLIS_PER_SECOND);
+	    showTimer(SECONDS_TO_COUNTDOWN * MILLIS_PER_SECOND);    // run Timer
 	}
 	
-	private void showTimer(int countdownMillis) {
+	private void showTimer(int countdownMillis) { 
 		  if(timer != null) { timer.cancel(); }
 		  timer = new CountDownTimer(countdownMillis, MILLIS_PER_SECOND) {
 		  @Override
@@ -90,6 +89,8 @@ public class PlayActivity extends Activity {
 		  @Override
 		    public void onFinish() {
 		      countdownDisplay.setText("KABOOM!");
+		      Intent intent = new Intent(PlayActivity.this, MainActivity.class);  // time solver
+		      startActivity(intent);
 		      // dialog: you game over, your result, once again?
 		    }
 		  }.start();
@@ -192,23 +193,22 @@ public class PlayActivity extends Activity {
 	   				   new_time = new_time - 5;
 	   				   if(new_time<0)
 	   				   {
-	   					   // game over dialog, again?
+	   					   // game over dialog, again or new Activity?
+	   					   Intent intent = new Intent(PlayActivity.this, MainActivity.class);  // time solver
+	   					   startActivity(intent);
 	   				   }
 	   				   else
 	   				   {
 	   					   showTimer( (new_time) * MILLIS_PER_SECOND);
 	   				   }
-	   				   
-	   				   
 	   	    		}
-	   	    	    
 	   	    		OnGenerationExample();
 	   	    		editTextAnswer.setText("");
 	   	        break; 
 	    	  }        
 	       }
 	     };
-	
+	     
 	     public void addNumberEvent(String s) {
 	    	 EditText editTextAnswer = (EditText)findViewById(R.id.editTextAnswer);
 	    	 if(editTextAnswer.getText().toString()=="") {
