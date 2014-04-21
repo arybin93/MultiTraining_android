@@ -34,9 +34,14 @@ public class TrainingActivity extends Activity implements onEventListener {
 	//TextView textExample;
 	String answer; 
 	int result;
-	//---------------------------------
+//<<<<<<< HEAD
+	
 	final String LOG_TAG = "DB";
 	DBHelper dbHelper;
+//=======
+	int countRight = 0;
+	int countError = 0;
+//>>>>>>> caf8fb25654b6ed21b685082a6352acaf4333977
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +81,10 @@ public class TrainingActivity extends Activity implements onEventListener {
 	    dbHelper.read();
 	    
 		Fragment fragUp = getFragmentManager().findFragmentById(R.id.fragmentUp);
-		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(4);;
+		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(4);
+		    ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(4);
 		    ((TextView) fragUp.getView().findViewById(R.id.textExample)).setText(num1 + " x " + num2);
-		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setText("=" + result);
+		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setText(""+result);
 			((TextView)fragUp.getView().findViewById(R.id.textAnswer)).setText("");
 			
 						
@@ -104,10 +110,42 @@ public class TrainingActivity extends Activity implements onEventListener {
 		   Fragment fragUp = getFragmentManager().findFragmentById(R.id.fragmentUp);
 		   answer = (String) ((TextView)fragUp.getView().findViewById(R.id.textAnswer)).getText();
 		   String res = (String) ((TextView)fragUp.getView().findViewById(R.id.textRightAnswer)).getText();
-		   if(answer!=res)
+		   String res1;
+		   
+		   Log.i("!", res);
+		   Log.i("!!", answer);
+		   
+		   if(answer.equals(res))
 		   {
-			   ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(0);  
+			   ++countRight;
+			   res1 =   String.valueOf(countRight); 
+			   ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(0);
+			   ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setText("True!");
+			   ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(0);
+			   Log.e("countRight", res1);
 		   } 
+		   else
+		   {
+			   ++countError;
+			   ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(0);
+			   ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setText("False!");
+			   ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(0);
+			   res1 =   String.valueOf(countError); 
+			   Log.e("countError", res1);
+		   }
+		  /// Work with BD:
+		  Log.i("DB","DataBase");
+		   
+		   
+		   
+		  ///
+		  // DBHelper db = new DBHelper(this);
+		  // db.insertIntoDatabase("16-Apr-2014", 5, 0);
+		  // db.close();
+		  
+		   //String res2 =   String.valueOf(countRight); 
+		   //Log.i("countRight", res1);
+		   //Log.i("countRight", res2);
 	   }
 	  
 	@Override
