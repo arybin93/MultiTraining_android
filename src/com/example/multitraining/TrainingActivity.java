@@ -12,7 +12,9 @@ import android.text.style.UpdateLayout;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ContentValues;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,10 +34,16 @@ public class TrainingActivity extends Activity implements onEventListener {
 	//TextView textExample;
 	String answer; 
 	int result;
+	//---------------------------------
+	final String LOG_TAG = "DB";
+	DBHelper dbHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_training);	
+		setContentView(R.layout.activity_training);
+		// object for DB creation		
+	    dbHelper = new DBHelper(this);
 	}
 	
 	public int OnStart(View v)
@@ -45,11 +53,35 @@ public class TrainingActivity extends Activity implements onEventListener {
 		int num2 = r.nextInt(9)+1;
 	    result = num1 * num2;
 	    
+	    /*// to create object for data
+	    ContentValues cv = new ContentValues();*/
+	    
+	    // can get data!!!
+	    String date = "10.02.1994";
+	    String correctly = "5";
+	    String incorrectly = "1";
+	    
+	    // connect DB
+	    /*SQLiteDatabase db = dbHelper.getWritableDatabase();
+	    Log.d(LOG_TAG, "DB connected!");
+	    
+	    // input values
+	    cv.put("date", date);
+	    cv.put("correctly", correctly);
+	    cv.put("incorrectly", incorrectly);
+	    db.insert("mytable", null, cv);
+	    Log.d(LOG_TAG, "Insert in mytable complite!");*/
+	    dbHelper.insertIntoDatabase(date, correctly, incorrectly);
+	    Log.d(LOG_TAG, "Read DB!");
+	    dbHelper.read();
+	    
 		Fragment fragUp = getFragmentManager().findFragmentById(R.id.fragmentUp);
 		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(4);;
 		    ((TextView) fragUp.getView().findViewById(R.id.textExample)).setText(num1 + " x " + num2);
 		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setText("=" + result);
 			((TextView)fragUp.getView().findViewById(R.id.textAnswer)).setText("");
+			
+						
 		    return result;
 	}
 	
