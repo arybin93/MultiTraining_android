@@ -30,7 +30,7 @@ import android.widget.TextView;
 public class PlayActivity extends Activity {
 	
 	 private static final int MILLIS_PER_SECOND = 1000;
-	 private static final int SECONDS_TO_COUNTDOWN = 30;
+	 private static final int SECONDS_TO_COUNTDOWN = 31;
 	 private TextView     countdownDisplay;
 	 private CountDownTimer timer;
 	
@@ -88,8 +88,19 @@ public class PlayActivity extends Activity {
 		  }
 		  @Override
 		    public void onFinish() {
-		      countdownDisplay.setText("KABOOM!");
-		      Intent intent = new Intent(PlayActivity.this, MainActivity.class);  // time solver
+		      countdownDisplay.setText("BooM!");
+		      ///// INSERT IN DATABASE
+		      /*
+				
+		      
+		      
+		      
+		      
+		      
+		      
+		      */
+		      /////
+		      Intent intent = new Intent(PlayActivity.this, StatActivity.class);  // time solver
 		      startActivity(intent);
 		      // dialog: you game over, your result, once again?
 		    }
@@ -106,8 +117,8 @@ public class PlayActivity extends Activity {
 	    TextView Example = (TextView) findViewById(R.id.textExample);
 	    Example.setText(num1 + " x " + num2);
 	   
-	//  TextView AnsMessage = (TextView) findViewById(R.id.textAnswerMessage);
-	 // AnsMessage.setText("");    
+	 //  TextView AnsMessage = (TextView) findViewById(R.id.textAnswerMessage);
+	 //  AnsMessage.setText("");    
 	}
 	
 	//TextView Example = (TextView) findViewById(R.id.textExample);
@@ -159,49 +170,44 @@ public class PlayActivity extends Activity {
 	   	    		String resTest;
 	   	    		TextView AnsMessage = (TextView) findViewById(R.id.textAnswerMessage);
 	   	    		
-	   	    	 /* try {
-	   	    			TimeUnit.SECONDS.sleep(1); 
-	   	    		} catch (InterruptedException e) {
-	   	    			// TODO Auto-generated catch block
-	   	    			e.printStackTrace();
-	   	    		}
-	   	    	 */	
 	   	    		String currentTime;
 	   	    		int new_time;
 	   	    		
-	   	    		if(answer.equals(res))
-	   	    		{
-	   	    			++countRight;
-	   	    			resTest =   String.valueOf(countError); 
-	   				    Log.e("countRight", resTest);
-	   				    AnsMessage.setText("True!");
+	   	    	    countdownDisplay = (TextView) findViewById(R.id.textTime);
+ 				    currentTime =  countdownDisplay.getText().toString();
+ 				    Log.e("Time", currentTime);
+ 				    
+ 				    if(currentTime.equals("BooM!"))
+ 				    {  
+ 				    	 Log.e("Time", currentTime);
+ 				    	 Intent intent = new Intent(PlayActivity.this, MainActivity.class);  // time solver
+ 					     startActivity(intent);		    	
+ 				    }
+ 				    else
+ 				    {
+ 				    	new_time =Integer.parseInt(currentTime);
+ 				    	if(answer.equals(res))
+ 				    	{
+ 				    		++countRight;
+ 				    		resTest =   String.valueOf(countError); 
+ 				    		Log.e("countRight", resTest);
+ 				    		AnsMessage.setText("True!"); 
 	   				    
-	   				    countdownDisplay = (TextView) findViewById(R.id.textTime);
-	   				   currentTime =  countdownDisplay.getText().toString();
-	   				   new_time =Integer.parseInt(currentTime);
-	   				   new_time = new_time + 5;
-	   				   showTimer( (new_time) * MILLIS_PER_SECOND);
-	   	    		} else {
-	   	    			++countError;
-	   	    			resTest =   String.valueOf(countError); 
-	   				    Log.e("countError", resTest);
-	   				    AnsMessage.setText("False!");
+ 				    		new_time = new_time + 5;   /// plus time
+ 				    		showTimer( (new_time) * MILLIS_PER_SECOND);
 	   				    
-	   				   countdownDisplay = (TextView) findViewById(R.id.textTime);
-	   				   currentTime =  countdownDisplay.getText().toString();
-	   				   new_time =Integer.parseInt(currentTime);
-	   				   new_time = new_time - 5;
-	   				   if(new_time<0)
-	   				   {
-	   					   // game over dialog, again or new Activity?
-	   					   Intent intent = new Intent(PlayActivity.this, MainActivity.class);  // time solver
-	   					   startActivity(intent);
-	   				   }
-	   				   else
-	   				   {
-	   					   showTimer( (new_time) * MILLIS_PER_SECOND);
-	   				   }
+ 				    	} else {
+ 				    		++countError;
+ 				    		resTest =   String.valueOf(countError); 
+ 				    		Log.e("countError", resTest);
+ 				    		AnsMessage.setText("False!");
+ 				    		new_time = new_time - 5;      //// minus time
+ 				    		if(new_time>0)
+ 				    		{
+ 				    			showTimer( (new_time) * MILLIS_PER_SECOND);
+ 				    		}
 	   	    		}
+ 				    }
 	   	    		OnGenerationExample();
 	   	    		editTextAnswer.setText("");
 	   	        break; 
@@ -219,3 +225,17 @@ public class PlayActivity extends Activity {
 		     }	 
 	     }
 }
+
+
+	
+	 /* try {
+			TimeUnit.SECONDS.sleep(1); 
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			   	    	Intent intent = getIntent();
+						finish();
+						startActivity(intent);
+	 */	
