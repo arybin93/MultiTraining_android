@@ -72,8 +72,7 @@ public class PlayActivity extends Activity {
 		btn0.setOnClickListener(clikBtn);
 		btnC.setOnClickListener(clikBtn);
 		btnAnswer.setOnClickListener(clikBtn);
-
-		
+	
 		countdownDisplay = (TextView) findViewById(R.id.textTime);
 	    showTimer(SECONDS_TO_COUNTDOWN * MILLIS_PER_SECOND);    // run Timer
 	}
@@ -192,7 +191,7 @@ public class PlayActivity extends Activity {
  				    		resTest =   String.valueOf(countError); 
  				    		Log.e("countRight", resTest);
  				    		AnsMessage.setText("True!"); 
-	   				    
+	   				        
  				    		new_time = new_time + 5;   /// plus time
  				    		showTimer( (new_time) * MILLIS_PER_SECOND);
 	   				    
