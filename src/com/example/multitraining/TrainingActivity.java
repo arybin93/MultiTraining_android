@@ -7,48 +7,41 @@ import com.example.multitraining.DownFragment.onEventListener;
 import android.app.Fragment;
 //import android.support.v7.app.ActionBarActivity;
 //import android.support.v7.app.ActionBar;
-import android.support.v4.app.FragmentActivity;
-import android.text.style.UpdateLayout;
+//import android.support.v4.app.FragmentActivity;
+//import android.text.style.UpdateLayout;
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.ContentValues;
+//import android.app.FragmentManager;
+//import android.app.FragmentTransaction;
+//import android.content.ContentValues;
 import android.content.res.Configuration;
-import android.database.sqlite.SQLiteDatabase;
+//import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
+//import android.view.LayoutInflater;
+//import android.view.Menu;
+//import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.Button;
+//import android.view.ViewGroup;
+//import android.view.ViewParent;
+//import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.os.Build;
+//import android.widget.Toast;
+//import android.os.Build;
 
 public class TrainingActivity extends Activity implements onEventListener {
 	//TextView textExample;
 	String answer; 
 	int result;
-//<<<<<<< HEAD
-	
-	final String LOG_TAG = "DB";
-	DBHelper dbHelper;
-//=======
+		
 	int countRight = 0;
 	int countError = 0;
-//>>>>>>> caf8fb25654b6ed21b685082a6352acaf4333977
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_training);
-		// object for DB creation		
-	    dbHelper = new DBHelper(this);
+		setContentView(R.layout.activity_training);		
 	}
 	
 	public int OnStart(View v)
@@ -56,38 +49,14 @@ public class TrainingActivity extends Activity implements onEventListener {
 		Random r =new Random();
 		int num1 = r.nextInt(9)+1;
 		int num2 = r.nextInt(9)+1;
-	    result = num1 * num2;
-	    
-	    /*// to create object for data
-	    ContentValues cv = new ContentValues();*/
-	    
-	    // can get data!!!
-	    String date = "10.02.1994";
-	    String correctly = "5";
-	    String incorrectly = "1";
-	    
-	    // connect DB
-	    /*SQLiteDatabase db = dbHelper.getWritableDatabase();
-	    Log.d(LOG_TAG, "DB connected!");
-	    
-	    // input values
-	    cv.put("date", date);
-	    cv.put("correctly", correctly);
-	    cv.put("incorrectly", incorrectly);
-	    db.insert("mytable", null, cv);
-	    Log.d(LOG_TAG, "Insert in mytable complite!");*/
-	    dbHelper.insertIntoDatabase(date, correctly, incorrectly);
-	    Log.d(LOG_TAG, "Read DB!");
-	    dbHelper.read();
-	    
+	    result = num1 * num2;    
+	    	    
 		Fragment fragUp = getFragmentManager().findFragmentById(R.id.fragmentUp);
 		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(4);
 		    ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(4);
 		    ((TextView) fragUp.getView().findViewById(R.id.textExample)).setText(num1 + " x " + num2);
 		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setText(""+result);
 			((TextView)fragUp.getView().findViewById(R.id.textAnswer)).setText("");
-			
-						
 		    return result;
 	}
 	
@@ -133,19 +102,6 @@ public class TrainingActivity extends Activity implements onEventListener {
 			   res1 =   String.valueOf(countError); 
 			   Log.e("countError", res1);
 		   }
-		  /// Work with BD:
-		  Log.i("DB","DataBase");
-		   
-		   
-		   
-		  ///
-		  // DBHelper db = new DBHelper(this);
-		  // db.insertIntoDatabase("16-Apr-2014", 5, 0);
-		  // db.close();
-		  
-		   //String res2 =   String.valueOf(countRight); 
-		   //Log.i("countRight", res1);
-		   //Log.i("countRight", res2);
 	   }
 	  
 	@Override

@@ -9,17 +9,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
-	private ContentValues contVal = new ContentValues(); // Объект для данных
+	private ContentValues contVal = new ContentValues(); 
 	private SQLiteDatabase db = this.getWritableDatabase();	
 
 	public DBHelper(Context context) {
-		super(context, "myDB.db", null, 1);
-		//contVal = new ContentValues();
-		//db = this.getWritableDatabase();
+		super(context, "myDB.db", null, 1);		
 	}
 	
 	@Override	
-	public void onCreate(SQLiteDatabase db){ // Происходит, если БД не существует
+	public void onCreate(SQLiteDatabase db){ // Occurs if the DB doesn't exist
 		Log.d("DB", "--- onCreate database ---");
 		db.execSQL("create table mytable ("
           + " id integer primary key autoincrement, " 
@@ -30,16 +28,16 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { // Происходит, если БД существует		
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { // Occurs if the DB exist	
 	}
 	
-	public void insertIntoDatabase(String date, String correctly, String incorrectly) { // Вставляет данные в таблицу
-		// Подготовка данных для вставки
+	public void insertIntoDatabase(String date, int correctly, int incorrectly) { // Insert data
+		// Preparation of data for an insert
 		contVal.put("date", date);
 		contVal.put("correctly", correctly);
 		contVal.put("incorrectly", incorrectly);
 		
-		// Вставка данных в таблицу
+		// Insert of data in the table
 		db.insert("mytable", null, contVal);	
 		Log.d("DB", "Insert in mytable complite!");
 		contVal.clear();
@@ -48,28 +46,40 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void read(){
 		Cursor c = db.query("mytable", null, null, null, null, null, null);
 		
-		// если в выборке нет строк, вернется false
+		// if in selection there are no lines, false will return
 		if (c.moveToFirst()) {
 
-	        // определяем номера столбцов по имени в выборке
+	        // define numbers of columns by name in selection
 	        int idColIndex = c.getColumnIndex("id");
 	        int dateColIndex = c.getColumnIndex("date");
 	        int correctlyColIndex = c.getColumnIndex("correctly");
 	        int incorrectlyColIndex = c.getColumnIndex("incorrectly");
 
 	        do {
-	          // получаем значения по номерам столбцов и пишем все в лог
+	          // write
 	          Log.d("DB",
 	              "ID = " + c.getInt(idColIndex) + 
 	              ", date = " + c.getString(dateColIndex) + 
 	              ", correctly = " + c.getString(correctlyColIndex) +
 	              ", incorrectly = " + c.getString(incorrectlyColIndex));
-	          // переход на следующую строку 
-	          // а если следующей нет (текущая - последняя), то false - выходим из цикла
+	          // next line 	          
 	        } while (c.moveToNext());
 	      } else
 	        Log.d("DB", "0 rows");
 	      c.close();				
 	}
 	
+	protected String searchMaximumId(){
+		String rez = null;
+		Cursor c = db.rawQuery("SELECT MAX(id) AS maxId FROM mytable;", null);
+		if(c.moveToFirst()){
+			rez = c.getString(c.getColumnIndex("maxId"));		
+		}
+		c.close();		
+		return rez;
+	}
+	
+	public void updateLastRecord(int correctly, int incorrectly){
+		db.execSQL("UPDATE mytable SET correctly = '" + String.valueOf(correctly) + "' , incorrectly = '" + String.valueOf(incorrectly) + "' WHERE id = " + searchMaximumId() + ";");		
+	}	
 }
