@@ -82,4 +82,10 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void updateLastRecord(int correctly, int incorrectly){
 		db.execSQL("UPDATE mytable SET correctly = '" + String.valueOf(correctly) + "' , incorrectly = '" + String.valueOf(incorrectly) + "' WHERE id = " + searchMaximumId() + ";");		
 	}	
+	
+	public void deleteDB()
+	{
+		db.execSQL("DELETE FROM mytable;");  //  DELETE * FROM mytable;
+	}
+	
 }

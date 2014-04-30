@@ -6,6 +6,7 @@ import java.util.Random;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.format.DateFormat;
@@ -24,9 +25,9 @@ public class PlayActivity extends Activity {
 	 private CountDownTimer timer;
 	
 	 String answer; 
-	 int result;
-	 int countRight = 0;
-	 int countError = 0;
+	 private int result;
+	 private int countRight = 0;
+	 private int countError = 0;
 	 
 	 DBHelper dbHelper;
 	 
@@ -63,16 +64,13 @@ public class PlayActivity extends Activity {
 		btn0.setOnClickListener(clikBtn);
 		btnC.setOnClickListener(clikBtn);
 		btnAnswer.setOnClickListener(clikBtn);
-<<<<<<< HEAD
-	
-=======
 
+		
 		dbHelper = new DBHelper(this);
 		
 		CharSequence currentDateTimeString = DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date());		
 		dbHelper.insertIntoDatabase(String.valueOf(currentDateTimeString), 0, 0);
 		
->>>>>>> 0d6f4584413984017dc34a73fad029f907eb25a4
 		countdownDisplay = (TextView) findViewById(R.id.textTime);
 	    showTimer(SECONDS_TO_COUNTDOWN * MILLIS_PER_SECOND);    // run Timer	    
 	}
@@ -87,9 +85,14 @@ public class PlayActivity extends Activity {
 		  }
 		  @Override
 		    public void onFinish() {
+			  Log.e("FINISH", "Time finish");
+			  Log.e("FINISH", (String) countdownDisplay.getText());
 		      countdownDisplay.setText("BooM!");		      
-		      Intent intent = new Intent(PlayActivity.this, StatActivity.class);  // time solver
-		      startActivity(intent);
+		      	if(countdownDisplay.getText().equals("BooM!"))
+		      	{
+		      	  Intent intent =  new Intent(PlayActivity.this, StatActivity.class) ;// new Intent(this, StatActivity.class);  // time solver
+		      	  startActivity(intent);
+		      	}  
 		      // dialog: you game over, your result, once again?
 		    }
 		  }.start();
@@ -177,16 +180,14 @@ public class PlayActivity extends Activity {
  				    	if(answer.equals(res))
  				    	{
  				    		++countRight;
- 				    		resTest =   String.valueOf(countError); 
+ 				    		resTest =   String.valueOf(countRight); 
  				    		Log.e("countRight", resTest);
-<<<<<<< HEAD
+
  				    		AnsMessage.setText("True!"); 
-	   				        
-=======
- 				    		AnsMessage.setText("True!"); 				    		
+		    		
  				    		dbHelper.updateLastRecord(countRight, countError);	   		
  				    		dbHelper.read();
->>>>>>> 0d6f4584413984017dc34a73fad029f907eb25a4
+ 				    			
  				    		new_time = new_time + 5;   /// plus time
  				    		showTimer( (new_time) * MILLIS_PER_SECOND);
 	   				    
