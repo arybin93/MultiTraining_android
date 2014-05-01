@@ -1,5 +1,7 @@
 package com.example.multitraining;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -68,6 +70,29 @@ public class DBHelper extends SQLiteOpenHelper {
 	        Log.d("DB", "0 rows");
 	      c.close();				
 	}
+	
+	
+	public ArrayList<String> select(){
+		Cursor c = db.query("mytable", null, null, null, null, null, null);
+		ArrayList<String> QSelect = new ArrayList<String>();
+		String s;
+		while (c.moveToNext()) 
+		{
+			 int idColIndex = c.getColumnIndex("id");
+		     int dateColIndex = c.getColumnIndex("date");
+		     int correctlyColIndex = c.getColumnIndex("correctly");
+		     int incorrectlyColIndex = c.getColumnIndex("incorrectly");
+			 s = c.getInt(idColIndex) + "  " + c.getString(dateColIndex) + "  " + c.getString(correctlyColIndex) + "  " +
+					 c.getString(incorrectlyColIndex);
+		     QSelect.add(s);
+		}
+		
+		c.close();	
+		return QSelect;
+	}
+	
+	
+	
 	
 	protected String searchMaximumId(){
 		String rez = null;
