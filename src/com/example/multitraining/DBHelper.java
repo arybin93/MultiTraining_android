@@ -82,7 +82,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		     int dateColIndex = c.getColumnIndex("date");
 		     int correctlyColIndex = c.getColumnIndex("correctly");
 		     int incorrectlyColIndex = c.getColumnIndex("incorrectly");
-			 s = c.getInt(idColIndex) + "  " + c.getString(dateColIndex) + "  " + c.getString(correctlyColIndex) + "  " +
+			 s = c.getInt(idColIndex) + "  " + c.getString(dateColIndex) + "      " + c.getString(correctlyColIndex) + "      " +
 					 c.getString(incorrectlyColIndex);
 		     QSelect.add(s);
 		}
@@ -108,7 +108,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL("UPDATE mytable SET correctly = '" + String.valueOf(correctly) + "' , incorrectly = '" + String.valueOf(incorrectly) + "' WHERE id = " + searchMaximumId() + ";");		
 	}	
 	
-	public void deleteDB()
+	public void deleteAll()
 	{
 		db.execSQL("DELETE FROM mytable;");  //  DELETE * FROM mytable;
 	}

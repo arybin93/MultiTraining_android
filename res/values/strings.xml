@@ -29,5 +29,6 @@
 	<string name="butTren">Тренировка</string>
 	<string name="butPlay">Игра на время</string>
 	<string name="butStatistic">Статистика</string>
-	
+	<string name="Description">№  Дата Верно Ошибки</string>
+	<string name="empty">Нет данных</string>
 </resources>
