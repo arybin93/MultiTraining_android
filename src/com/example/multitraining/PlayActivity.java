@@ -6,6 +6,7 @@ import java.util.Random;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.format.DateFormat;
@@ -24,9 +25,9 @@ public class PlayActivity extends Activity {
 	 private CountDownTimer timer;
 	
 	 String answer; 
-	 int result;
-	 int countRight = 0;
-	 int countError = 0;
+	 private int result;
+	 private int countRight = 0;
+	 private int countError = 0;
 	 
 	 DBHelper dbHelper;
 	 
@@ -64,6 +65,7 @@ public class PlayActivity extends Activity {
 		btnC.setOnClickListener(clikBtn);
 		btnAnswer.setOnClickListener(clikBtn);
 
+		
 		dbHelper = new DBHelper(this);
 		
 		CharSequence currentDateTimeString = DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date());		
@@ -83,9 +85,14 @@ public class PlayActivity extends Activity {
 		  }
 		  @Override
 		    public void onFinish() {
+			  Log.e("FINISH", "Time finish");
+			  Log.e("FINISH", (String) countdownDisplay.getText());
 		      countdownDisplay.setText("BooM!");		      
-		      Intent intent = new Intent(PlayActivity.this, StatActivity.class);  // time solver
-		      startActivity(intent);
+		      	if(countdownDisplay.getText().equals("BooM!"))
+		      	{
+		      	  Intent intent =  new Intent(PlayActivity.this, StatActivity.class) ;// new Intent(this, StatActivity.class);  // time solver
+		      	  startActivity(intent);
+		      	}  
 		      // dialog: you game over, your result, once again?
 		    }
 		  }.start();
@@ -173,11 +180,14 @@ public class PlayActivity extends Activity {
  				    	if(answer.equals(res))
  				    	{
  				    		++countRight;
- 				    		resTest =   String.valueOf(countError); 
+ 				    		resTest =   String.valueOf(countRight); 
  				    		Log.e("countRight", resTest);
- 				    		AnsMessage.setText("True!"); 				    		
+
+ 				    		AnsMessage.setText("True!"); 
+		    		
  				    		dbHelper.updateLastRecord(countRight, countError);	   		
  				    		dbHelper.read();
+ 				    			
  				    		new_time = new_time + 5;   /// plus time
  				    		showTimer( (new_time) * MILLIS_PER_SECOND);
 	   				    

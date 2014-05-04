@@ -15,19 +15,19 @@ public class MainActivity extends Activity {
 	
 	public void onStartTren(View v)
 	{
-		Intent intent = new Intent(this, TrainingActivity.class);
+		Intent intent = new Intent(MainActivity.this, TrainingActivity.class);
 	    startActivity(intent);	
 	}
 	
 	public void onStartPlay(View v)
 	{
-		Intent intent = new Intent(this, PlayActivity.class);
+		Intent intent = new Intent(MainActivity.this, PlayActivity.class);
 	    startActivity(intent);	
 	}
 	
 	public void onOpenStat(View v)
 	{
-		Intent intent = new Intent(this, StatActivity.class);
+		Intent intent = new Intent(MainActivity.this, StatActivity.class);
 	    startActivity(intent);	
 	}
 	
