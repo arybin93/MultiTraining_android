@@ -102,7 +102,7 @@ public class DBHelper extends SQLiteOpenHelper {
 					arrList.add((int) ((c.getDouble(0)/(c.getDouble(0)+c.getDouble(1)))*100));				
 				}
 			} while(c.moveToNext());
-		}
+		}		
 		c.close();
 		return arrList;
 	}
@@ -118,13 +118,34 @@ public class DBHelper extends SQLiteOpenHelper {
 		return rez;
 	}
 	
+	protected String searchMinimumId(){
+		String rez = null;
+		Cursor c = db.rawQuery("SELECT MIN(id) AS minId FROM mytable;", null);
+		if(c.moveToFirst()){
+			rez = c.getString(c.getColumnIndex("minId"));		
+		}
+		c.close();		
+		return rez;
+	}
+	
+	public void removeSuperfluousRecords(){
+		if(returnQuantity().size() > 14){
+			deleteRecord();
+		}
+	}
+	
+	
 	public void updateLastRecord(int correctly, int incorrectly){
 		db.execSQL("UPDATE mytable SET correctly = '" + String.valueOf(correctly) + "' , incorrectly = '" + String.valueOf(incorrectly) + "' WHERE id = " + searchMaximumId() + ";");		
 	}	
 	
 	public void deleteAll()
 	{
-		db.execSQL("DELETE FROM mytable;");  //  DELETE * FROM mytable;
+		db.execSQL("DELETE FROM mytable;");  
 	}
 	
+	protected void deleteRecord()
+	{
+		db.execSQL("DELETE FROM mytable WHERE id = " + searchMinimumId() + ";");  
+	}
 }

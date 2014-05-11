@@ -70,6 +70,7 @@ public class PlayActivity extends Activity {
 		
 		CharSequence currentDateTimeString = DateFormat.format("yyyy-MM-dd kk:mm:ss", new Date());		
 		dbHelper.insertIntoDatabase(String.valueOf(currentDateTimeString), 0, 0);
+		dbHelper.removeSuperfluousRecords();
 		
 		countdownDisplay = (TextView) findViewById(R.id.textTime);
 	    showTimer(SECONDS_TO_COUNTDOWN * MILLIS_PER_SECOND);    // run Timer	    
@@ -87,7 +88,7 @@ public class PlayActivity extends Activity {
 		    public void onFinish() {
 			  Log.e("FINISH", "Time finish");
 			  Log.e("FINISH", (String) countdownDisplay.getText());
-		      countdownDisplay.setText("BooM!");		      
+		      countdownDisplay.setText("Game over!");		      
 		      	if(countdownDisplay.getText().equals("BooM!"))
 		      	{
 		      	  Intent intent =  new Intent(PlayActivity.this, StatActivity.class) ;// new Intent(this, StatActivity.class);  // time solver
