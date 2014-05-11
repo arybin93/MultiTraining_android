@@ -23,10 +23,12 @@
 	<string name="textExample">Пример:</string>
 	<string name="textAnswer">Ответ:</string>
 	<string name="textTime">00:30</string>
-	
+	<string name="ClearALLrecord">Очистить всё</string>
 		
 	<string name="textHello">Привет!</string>
 	<string name="butTren">Тренировка</string>
 	<string name="butPlay">Игра на время</string>
 	<string name="butStatistic">Статистика</string>
+	<string name="Description">№  Дата Верно Ошибки</string>
+	<string name="empty">Нет данных</string>
 </resources>

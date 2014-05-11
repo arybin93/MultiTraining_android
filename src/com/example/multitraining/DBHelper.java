@@ -1,5 +1,8 @@
 package com.example.multitraining;
 
+import java.util.ArrayList;
+
+//import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -69,6 +72,42 @@ public class DBHelper extends SQLiteOpenHelper {
 	      c.close();				
 	}
 	
+	
+	public ArrayList<String> select(){
+		Cursor c = db.query("mytable", null, null, null, null, null, null);
+		ArrayList<String> QSelect = new ArrayList<String>();
+		String s;
+		while (c.moveToNext()) 
+		{
+			 int idColIndex = c.getColumnIndex("id");
+		     int dateColIndex = c.getColumnIndex("date");
+		     int correctlyColIndex = c.getColumnIndex("correctly");
+		     int incorrectlyColIndex = c.getColumnIndex("incorrectly");
+			 s = c.getInt(idColIndex) + "  " + c.getString(dateColIndex) + "      " + c.getString(correctlyColIndex) + "      " +
+					 c.getString(incorrectlyColIndex);
+		     QSelect.add(s);
+		}
+		
+		c.close();	
+		return QSelect;
+	}
+	
+	public ArrayList<Integer> returnQuantity(){
+		ArrayList<Integer> arrList = new ArrayList<Integer>();
+		Cursor c = db.rawQuery("SELECT correctly, incorrectly FROM mytable", null);		
+		if(c.moveToFirst()){
+			do{
+				if(c.getInt(0)+c.getInt(1) != 0){
+					//Log.i("DBTest", "correctly = " + c.getInt(0) + ", incorrectly = " + c.getInt(1));
+					arrList.add((int) ((c.getDouble(0)/(c.getDouble(0)+c.getDouble(1)))*100));				
+				}
+			} while(c.moveToNext());
+		}
+		c.close();
+		return arrList;
+	}
+	
+	
 	protected String searchMaximumId(){
 		String rez = null;
 		Cursor c = db.rawQuery("SELECT MAX(id) AS maxId FROM mytable;", null);
@@ -83,7 +122,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL("UPDATE mytable SET correctly = '" + String.valueOf(correctly) + "' , incorrectly = '" + String.valueOf(incorrectly) + "' WHERE id = " + searchMaximumId() + ";");		
 	}	
 	
-	public void deleteDB()
+	public void deleteAll()
 	{
 		db.execSQL("DELETE FROM mytable;");  //  DELETE * FROM mytable;
 	}

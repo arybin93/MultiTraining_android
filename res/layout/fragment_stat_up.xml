@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffff00"
+    android:orientation="vertical" >
+
+    <TextView
+ 		android:layout_width="wrap_content"
+ 		android:layout_height="wrap_content"
+ 		android:text="@string/Description"
+ 		android:textSize="20pt">
+	</TextView>
+    
+    <ListView
+ 		android:id="@id/android:list"
+ 		android:layout_width="match_parent"
+ 		android:layout_height="match_parent">
+	</ListView>
+    
+    <TextView
+ 		android:id="@id/android:empty"
+ 		android:layout_width="match_parent"
+ 		android:layout_height="match_parent"
+ 		android:gravity="center"
+ 		android:text="@string/empty"
+ 		android:textSize="25pt">
+	</TextView>
+    
+    <Button
+        android:id="@+id/butClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ClearALLrecord" />
+
+</LinearLayout>
