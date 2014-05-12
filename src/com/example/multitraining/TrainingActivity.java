@@ -376,9 +376,9 @@ public class TrainingActivity extends Activity implements onEventListener {
 	     }
 	     */
 	    // ft.add(R.id.fragmentUp, uf);
-	   //  ft.add(R.id.fragmentDown, df);
-	   //  ft.addToBackStack(null);
-	   //  ft.commit();
+	    //  ft.add(R.id.fragmentDown, df);
+	    //  ft.addToBackStack(null);
+	    //  ft.commit();
 
 
 

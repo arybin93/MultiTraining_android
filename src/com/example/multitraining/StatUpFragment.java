@@ -14,10 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-
 public class StatUpFragment extends ListFragment {
-		
-	
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		      Bundle savedInstanceState) {
 		 View fragment = inflater.inflate(R.layout.fragment_stat_up, null);

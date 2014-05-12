@@ -11,7 +11,7 @@ public class StatActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stat);	
-		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		//setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		//DBHelper db = new DBHelper(this);
 		
