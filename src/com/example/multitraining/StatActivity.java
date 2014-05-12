@@ -23,14 +23,6 @@ public class StatActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_stat);	
-		//setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		
-		//DBHelper db = new DBHelper(this);
-		
-		//db.deleteDB();
-		//Log.i("DB", "Delete DB");
-		
-		setContentView(R.layout.activity_stat);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		DBHelper db = new DBHelper(this);

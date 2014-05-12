@@ -35,7 +35,7 @@ public class PlayActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play);	
-		//setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		OnGenerationExample();  // generation example
 		
@@ -81,24 +81,36 @@ public class PlayActivity extends Activity {
 		  timer = new CountDownTimer(countdownMillis, MILLIS_PER_SECOND) {
 		  @Override
 		  public void onTick(long millisUntilFinished) {
-		    countdownDisplay.setText("" +
+			  countdownDisplay.setText("" +
 		    millisUntilFinished / MILLIS_PER_SECOND);
+			
+			  if( (millisUntilFinished / MILLIS_PER_SECOND)>=100)
+			  {
+				   countdownDisplay.setText("You win!");
+				   timer.onFinish();
+			  }  
 		  }
 		  @Override
 		    public void onFinish() {
 			  Log.e("FINISH", "Time finish");
 			  Log.e("FINISH", (String) countdownDisplay.getText());
-		      countdownDisplay.setText("Game over!");		      
-		      	if(countdownDisplay.getText().equals("Game over!"))
-		      	{
-		      	  Intent intent =  new Intent(PlayActivity.this, StatActivity.class) ;// new Intent(this, StatActivity.class);  // time solver
-		      	  startActivity(intent);
-		      	}  
-		      // dialog: you game over, your result, once again?
+
+		      String c = new String();
+		      c = (String) countdownDisplay.getText();
+		      
+		      if(c.equals("You win!"))
+		      {
+		    	  countdownDisplay.setText("You win!");
+		      } else {
+		    	  countdownDisplay.setText("Game over!");
+		      }
 		    }
 		  }.start();
+		  		  
 		}
 
+	
+	
 	public void OnGenerationExample()
 	{
 		Random r =new Random();
@@ -169,8 +181,9 @@ public class PlayActivity extends Activity {
  				    currentTime =  countdownDisplay.getText().toString();
  				    Log.e("Time", currentTime);
  				    
- 				    if(currentTime.equals("Game over!"))
+ 				    if(currentTime.equals("Game over!") || currentTime.equals("You win!") )
  				    {  
+ 				    	 timer.cancel();
  				    	 Log.e("Time", currentTime);
  				    	 Intent intent = new Intent(PlayActivity.this, MainActivity.class);  // time solver
  					     startActivity(intent);		    	
