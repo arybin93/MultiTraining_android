@@ -21,7 +21,7 @@ public class StatActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-<<<<<<< HEAD
+
 		setContentView(R.layout.activity_stat);	
 		//setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
@@ -29,7 +29,7 @@ public class StatActivity extends Activity {
 		
 		//db.deleteDB();
 		//Log.i("DB", "Delete DB");
-=======
+		
 		setContentView(R.layout.activity_stat);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -55,6 +55,6 @@ public class StatActivity extends Activity {
 		plot.addSeries(series1, series1Format);
 		plot.addSeries(series2, series1Format);
 		plot.addSeries(series3, series1Format);		
->>>>>>> 955aaf3941089bc8d4abc03da50ab284957f66b2
+
 	}
 }
