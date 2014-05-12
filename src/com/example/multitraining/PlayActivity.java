@@ -89,7 +89,7 @@ public class PlayActivity extends Activity {
 			  Log.e("FINISH", "Time finish");
 			  Log.e("FINISH", (String) countdownDisplay.getText());
 		      countdownDisplay.setText("Game over!");		      
-		      	if(countdownDisplay.getText().equals("BooM!"))
+		      	if(countdownDisplay.getText().equals("Game over!"))
 		      	{
 		      	  Intent intent =  new Intent(PlayActivity.this, StatActivity.class) ;// new Intent(this, StatActivity.class);  // time solver
 		      	  startActivity(intent);
