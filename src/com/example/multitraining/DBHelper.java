@@ -2,6 +2,7 @@ package com.example.multitraining;
 
 import java.util.ArrayList;
 
+//import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -91,7 +92,20 @@ public class DBHelper extends SQLiteOpenHelper {
 		return QSelect;
 	}
 	
-	
+	public ArrayList<Integer> returnQuantity(){
+		ArrayList<Integer> arrList = new ArrayList<Integer>();
+		Cursor c = db.rawQuery("SELECT correctly, incorrectly FROM mytable", null);		
+		if(c.moveToFirst()){
+			do{
+				if(c.getInt(0)+c.getInt(1) != 0){
+					//Log.i("DBTest", "correctly = " + c.getInt(0) + ", incorrectly = " + c.getInt(1));
+					arrList.add((int) ((c.getDouble(0)/(c.getDouble(0)+c.getDouble(1)))*100));				
+				}
+			} while(c.moveToNext());
+		}		
+		c.close();
+		return arrList;
+	}
 	
 	
 	protected String searchMaximumId(){
@@ -104,13 +118,34 @@ public class DBHelper extends SQLiteOpenHelper {
 		return rez;
 	}
 	
+	protected String searchMinimumId(){
+		String rez = null;
+		Cursor c = db.rawQuery("SELECT MIN(id) AS minId FROM mytable;", null);
+		if(c.moveToFirst()){
+			rez = c.getString(c.getColumnIndex("minId"));		
+		}
+		c.close();		
+		return rez;
+	}
+	
+	public void removeSuperfluousRecords(){
+		if(returnQuantity().size() > 14){
+			deleteRecord();
+		}
+	}
+	
+	
 	public void updateLastRecord(int correctly, int incorrectly){
 		db.execSQL("UPDATE mytable SET correctly = '" + String.valueOf(correctly) + "' , incorrectly = '" + String.valueOf(incorrectly) + "' WHERE id = " + searchMaximumId() + ";");		
 	}	
 	
 	public void deleteAll()
 	{
-		db.execSQL("DELETE FROM mytable;");  //  DELETE * FROM mytable;
+		db.execSQL("DELETE FROM mytable;");  
 	}
 	
+	protected void deleteRecord()
+	{
+		db.execSQL("DELETE FROM mytable WHERE id = " + searchMinimumId() + ";");  
+	}
 }
