@@ -101,6 +101,7 @@ public class DBHelper extends SQLiteOpenHelper {
 					//Log.i("DBTest", "correctly = " + c.getInt(0) + ", incorrectly = " + c.getInt(1));
 					arrList.add((int) ((c.getDouble(0)/(c.getDouble(0)+c.getDouble(1)))*100));				
 				}
+				else arrList.add(0);
 			} while(c.moveToNext());
 		}		
 		c.close();
