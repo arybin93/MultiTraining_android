@@ -2,6 +2,7 @@ package com.example.multitraining;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);	
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}	
 	
 	public void onStartTren(View v)
@@ -52,3 +54,17 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 }
+
+/*
+ * 
+ *     
+     <TextView
+            android:id="@+id/textAnswerMessage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:textSize="20pt"
+            android:text=""
+            android:visibility="invisible" />
+ * 
+ */

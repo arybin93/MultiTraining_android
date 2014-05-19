@@ -21,6 +21,7 @@ import android.util.Log;
 //import android.view.Menu;
 //import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 //import android.view.ViewGroup;
 //import android.view.ViewParent;
 //import android.widget.Button;
@@ -34,7 +35,7 @@ public class TrainingActivity extends Activity implements onEventListener {
 	//TextView textExample;
 	String answer; 
 	int result;
-		
+	private ImageView mImageView;	
 	int countRight = 0;
 	int countError = 0;
 	
@@ -53,7 +54,7 @@ public class TrainingActivity extends Activity implements onEventListener {
 	    	    
 		Fragment fragUp = getFragmentManager().findFragmentById(R.id.fragmentUp);
 		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(4);
-		    ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(4);
+		   // ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(4);
 		    ((TextView) fragUp.getView().findViewById(R.id.textExample)).setText(num1 + " x " + num2);
 		    ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setText(""+result);
 			((TextView)fragUp.getView().findViewById(R.id.textAnswer)).setText("");
@@ -86,19 +87,27 @@ public class TrainingActivity extends Activity implements onEventListener {
 		   
 		   if(answer.equals(res))
 		   {
+
+			   mImageView = (ImageView) findViewById(R.id.imageMassage);
+			   mImageView.setImageResource(R.drawable.true1);
+			   
+			   
 			   ++countRight;
 			   res1 =   String.valueOf(countRight); 
 			   ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(0);
-			   ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setText("True!");
-			   ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(0);
+			   //((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setText("True!");
+			   //((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(0);
 			   Log.e("countRight", res1);
 		   } 
 		   else
 		   {
+			   mImageView = (ImageView) findViewById(R.id.imageMassage);
+			   mImageView.setImageResource(R.drawable.false1);
+			   
 			   ++countError;
 			   ((TextView) fragUp.getView().findViewById(R.id.textRightAnswer)).setVisibility(0);
-			   ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setText("False!");
-			   ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(0);
+			  //  ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setText("False!");
+			 //  ((TextView) fragUp.getView().findViewById(R.id.textAnswerMessage)).setVisibility(0);
 			   res1 =   String.valueOf(countError); 
 			   Log.e("countError", res1);
 		   }

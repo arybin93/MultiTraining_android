@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#f0ffff"
-    android:orientation="vertical" >
+    android:layout_height="400px"
+    android:orientation="vertical"
+    android:background="@drawable/background_tren" >
 	
     <TextView
         android:id="@+id/textExampleHandle"
@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/textExample"
+        android:textColor="#00FF21"
         android:textSize="35pt" />
 		
     <TextView
@@ -18,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="#00FF21"
         android:layout_gravity="center"
         android:textSize="20pt" />
 
@@ -25,42 +27,42 @@
         android:id="@+id/textAnswerHandle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textAnswer" 
+        android:text="@string/textAnswer"
+        android:textColor="#00FF21" 
         android:layout_gravity="center"
         android:textSize="35pt" />
-
-         <TextView
-              android:id="@+id/textAnswer"
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="1"
-              android:text=""
-              android:layout_gravity="center"
-              android:textSize="20pt" />
-        
 
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
+         <TextView
+             android:id="@+id/textAnswer"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text=""
+             android:paddingLeft="30dp"
+             android:textColor="#00FF21"
+             android:textSize="20pt"
+             android:maxLength="4" />
+        
         <TextView
             android:id="@+id/textRightAnswer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:textSize="20pt"
             android:text=""
+            android:paddingLeft="40dp"
+            android:textColor="#ffff00"
             android:visibility="invisible" />
 
-         <TextView
-            android:id="@+id/textAnswerMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="20pt"
-            android:text=""
-            android:visibility="invisible" />
     </TableRow>
-   
+   	
+    <ImageView android:id="@+id/imageMassage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        
+
+    
 </LinearLayout>

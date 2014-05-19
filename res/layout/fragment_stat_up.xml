@@ -5,28 +5,59 @@
     android:background="#ffff00"
     android:orientation="vertical" >
 
-    <TextView
- 		android:layout_width="wrap_content"
- 		android:layout_height="wrap_content"
- 		android:text="@string/Description"
- 		android:textSize="20pt">
-	</TextView>
-    
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="№"
+            android:textSize="15pt"
+            android:paddingLeft="5dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Дата"
+            android:textSize="15pt"
+            android:paddingLeft="10dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Верно"
+            android:textSize="15pt"
+            android:paddingLeft="115dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Неверно"
+            android:textSize="15pt"
+            android:paddingLeft="5dp" >
+        </TextView>
+    </TableRow>
+
     <ListView
- 		android:id="@id/android:list"
- 		android:layout_width="match_parent"
- 		android:layout_height="match_parent">
-	</ListView>
-    
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </ListView>
+
     <TextView
- 		android:id="@id/android:empty"
- 		android:layout_width="match_parent"
- 		android:layout_height="match_parent"
- 		android:gravity="center"
- 		android:text="@string/empty"
- 		android:textSize="25pt">
-	</TextView>
-    
+        android:id="@id/android:empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/empty"
+        android:textSize="25pt" >
+    </TextView>
+
     <Button
         android:id="@+id/butClear"
         android:layout_width="wrap_content"

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/background_main" >
 
         <TextView
             android:id="@+id/textTime"
@@ -19,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="30pt"
+            android:textColor="#00FF21"
             android:layout_gravity="center"/>
 
         <EditText
@@ -28,7 +30,8 @@
             android:ems="10"
             android:textSize="20pt"
             android:cursorVisible="false"
-   			android:inputType="number" >
+   			android:inputType="number"
+   			android:textColor="#00FF00" >
             <requestFocus />
         </EditText>
         
@@ -53,7 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num1"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
 
         <Button
             android:id="@+id/button2"
@@ -61,7 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num2"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
 
         <Button
             android:id="@+id/button3"
@@ -69,7 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num3"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
     </TableRow>
 
     <TableRow
@@ -83,7 +89,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num4"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
 
         <Button
             android:id="@+id/button5"
@@ -91,7 +98,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num5"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
 
         <Button
             android:id="@+id/button6"
@@ -99,7 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num6"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
     </TableRow>
 
     <TableRow
@@ -113,7 +122,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num7"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
 
         <Button
             android:id="@+id/button8"
@@ -121,7 +131,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num8"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
 
         <Button
             android:id="@+id/button9"
@@ -129,7 +140,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num9"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
     </TableRow>
 
     <TableRow
@@ -143,7 +155,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/NumC"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
 
         <Button 
             android:id="@+id/buttonZero"
@@ -151,7 +164,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Num0"
-            android:textSize="25pt" />
+            android:textSize="25pt"
+            android:textColor="#FFFF00" />
     </TableRow>
      
      <Button
@@ -160,6 +174,7 @@
          android:layout_height="wrap_content"
          android:layout_gravity="center"
          android:text="@string/NumAnswer"
-         android:textSize="30pt" />
+         android:textSize="30pt"
+         android:textColor="#FFFF00" />
         
 </LinearLayout>

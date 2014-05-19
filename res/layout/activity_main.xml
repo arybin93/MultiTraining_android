@@ -2,35 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textHello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/textHello"
-        android:textSize="20pt" />
+    android:orientation="vertical"
+    android:background="@drawable/background_main"
+    android:gravity="center" >
 
     <Button
         android:id="@+id/butStartTren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onStartTren"
-        android:text="@string/butTren" />
+        android:text="@string/butTren"
+        android:textColor="#ffff00"
+        android:textSize="30pt"
+        android:background="@drawable/buttons" />
 
     <Button
         android:id="@+id/butStartPlayOnTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onStartPlay"
-        android:text="@string/butPlay" />
-    
-     <Button
+        android:text="@string/butPlay"
+        android:textSize="30pt"
+        android:textColor="#ffff00"
+        android:background="@drawable/buttons" />
+
+    <Button
         android:id="@+id/butStat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onOpenStat"
-        android:text="@string/butStatistic" />
+        android:text="@string/butStatistic"
+        android:textSize="30pt"
+        android:textColor="#ffff00"
+        android:background="@drawable/buttons" />
 
 </LinearLayout>

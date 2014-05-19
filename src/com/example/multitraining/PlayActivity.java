@@ -84,26 +84,26 @@ public class PlayActivity extends Activity {
 			  countdownDisplay.setText("" +
 		    millisUntilFinished / MILLIS_PER_SECOND);
 			
-			  if( (millisUntilFinished / MILLIS_PER_SECOND)>=100)
+			/*  if( (millisUntilFinished / MILLIS_PER_SECOND)>=100)
 			  {
 				   countdownDisplay.setText("You win!");
 				   timer.onFinish();
-			  }  
+			  } */  
 		  }
 		  @Override
 		    public void onFinish() {
 			  Log.e("FINISH", "Time finish");
 			  Log.e("FINISH", (String) countdownDisplay.getText());
 
-		      String c = new String();
-		      c = (String) countdownDisplay.getText();
+		      //String c = new String();
+		      //c = (String) countdownDisplay.getText();
 		      
-		      if(c.equals("You win!"))
-		      {
-		    	  countdownDisplay.setText("You win!");
-		      } else {
+		     // if(c.equals("You win!"))
+		    //  {
+		    /// 	  countdownDisplay.setText("You win!");
+		    //   } else {
 		    	  countdownDisplay.setText("Game over!");
-		      }
+		    //   }
 		    }
 		  }.start();
 		  		  
@@ -183,7 +183,7 @@ public class PlayActivity extends Activity {
  				    
  				    if(currentTime.equals("Game over!") || currentTime.equals("You win!") )
  				    {  
- 				    	 timer.cancel();
+ 				    	// timer.cancel();
  				    	 Log.e("Time", currentTime);
  				    	 Intent intent = new Intent(PlayActivity.this, MainActivity.class);  // time solver
  					     startActivity(intent);		    	
@@ -191,7 +191,13 @@ public class PlayActivity extends Activity {
  				    else
  				    {
  				    	new_time =Integer.parseInt(currentTime);
- 				    	if(answer.equals(res))
+ 				    	
+ 				    	if(new_time >= 100)
+ 				    	{
+ 				    		timer.cancel();
+ 				    		countdownDisplay.setText("You win!");
+ 				    	}
+ 				    	else if(answer.equals(res))
  				    	{
  				    		++countRight;
  				    		resTest =   String.valueOf(countRight); 
