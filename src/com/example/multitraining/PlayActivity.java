@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PlayActivity extends Activity {
@@ -28,7 +29,7 @@ public class PlayActivity extends Activity {
 	 private int result;
 	 private int countRight = 0;
 	 private int countError = 0;
-	 
+	 private ImageView mImageView;
 	 DBHelper dbHelper;
 	 
 	@Override
@@ -172,7 +173,7 @@ public class PlayActivity extends Activity {
 	   	    		answer = editTextAnswer.getText().toString();
 	   	    		String res = String.valueOf(result);
 	   	    		String resTest;
-	   	    		TextView AnsMessage = (TextView) findViewById(R.id.textAnswerMessage);
+	   	    		//TextView AnsMessage = (TextView) findViewById(R.id.textAnswerMessage);
 	   	    		
 	   	    		String currentTime;
 	   	    		int new_time;
@@ -203,8 +204,21 @@ public class PlayActivity extends Activity {
  				    		resTest =   String.valueOf(countRight); 
  				    		Log.e("countRight", resTest);
 
- 				    		AnsMessage.setText("True!"); 
-		    		
+ 				    		//AnsMessage.setText("True!"); 
+ 				    		mImageView = (ImageView) findViewById(R.id.imageMassage);
+ 						    mImageView.setImageResource(R.drawable.true1);
+ 				    		
+ 						 /* <TextView 
+ 				            android:id="@+id/textAnswerMessage"
+ 				            android:layout_width="wrap_content"
+ 				            android:layout_height="wrap_content"
+ 				            android:text=""
+ 				            android:textSize="25pt"
+ 				            android:layout_gravity="center"
+ 				         
+ 				         />*/
+ 						    
+ 						    
  				    		dbHelper.updateLastRecord(countRight, countError);	   		
  				    		dbHelper.read();
  				    			
@@ -215,7 +229,12 @@ public class PlayActivity extends Activity {
  				    		++countError;
  				    		resTest =   String.valueOf(countError); 
  				    		Log.e("countError", resTest);
- 				    		AnsMessage.setText("False!");
+ 				    		//AnsMessage.setText("False!");
+ 				    		
+ 				    		mImageView = (ImageView) findViewById(R.id.imageMassage);
+ 						    mImageView.setImageResource(R.drawable.false1);
+ 				    		
+ 				    		
  				    		dbHelper.updateLastRecord(countRight, countError);
  				    		dbHelper.read();
  				    		new_time = new_time - 5;      //// minus time

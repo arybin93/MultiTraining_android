@@ -35,15 +35,11 @@
             <requestFocus />
         </EditText>
         
-        <TextView 
-            android:id="@+id/textAnswerMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="25pt"
-            android:layout_gravity="center"
-         
+       <ImageView android:id="@+id/imageMassage"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
          />
+        
         
         <TableRow
         android:id="@+id/tableRow1"
